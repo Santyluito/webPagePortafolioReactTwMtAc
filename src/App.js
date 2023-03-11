@@ -7,12 +7,14 @@ import { Navbar } from "./modules/Navbar";
 import MySkills from "./pages/MySkills";
 import { Projects } from "./pages/Projects";
 import Testimonials from "./pages/Testimonials";
+import Contact from "./pages/Contact";
+import { Footer } from "./modules/Footer";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState("home");
   const [isTopOfPage, setIsTopOfPage] = useState(true);
   const isAboveMediaScreens = useMediaQuery("(min-width: 1060px)");
-  console.log(window.scrollY);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY === 0) setIsTopOfPage(true);
@@ -30,11 +32,12 @@ function App() {
         setSelectedPage={setSelectedPage}
       />
       <div className="w-5/6 mx-auto md:h-full">
-        {
-          isAboveMediaScreens && (
-            <DotGroup selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
-          )
-        }
+        {isAboveMediaScreens && (
+          <DotGroup
+            selectedPage={selectedPage}
+            setSelectedPage={setSelectedPage}
+          />
+        )}
         <Landing setSelectedPage={setSelectedPage} />
       </div>
       <LineGradient />
@@ -49,6 +52,11 @@ function App() {
       <div className="w-5/6 mx-auto md:h-full">
         <Testimonials />
       </div>
+      <LineGradient />
+      <div className="w-5/6 mx-auto md:h-screen">
+        <Contact />
+      </div>
+      <Footer />
     </div>
   );
 }
